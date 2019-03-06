@@ -1,0 +1,226 @@
+fileFormatVersion: 2
+guid: d9d1077084027d143bfaa8a457749047
+timeCreated: 1538390025
+licenseType: Store
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: blade00d
+    100004: blade01d
+    100006: blade02d
+    100008: BladeOrigin
+    100010: grip00d
+    100012: grip01d
+    100014: grip02d
+    100016: gripEnd00d
+    100018: gripEnd01d
+    100020: gripEnd02d
+    100022: GripOrigin
+    100024: head00d
+    100026: head01d
+    100028: headEndSide00.L
+    100030: headEndSide00.R
+    100032: headEndSide01.L
+    100034: headEndSide01.R
+    100036: headEndTop00
+    100038: headEndTop01
+    100040: HeadOrigin
+    100042: pommel00d
+    100044: pommel01d
+    100046: pommel02d
+    100048: PommelOrigin
+    100050: top00d
+    100052: top01d
+    100054: top02d
+    100056: TopOrigin
+    100058: grip00End
+    100060: grip01End
+    100062: grip03d
+    100064: grip04d
+    100066: gripOrigin
+    100068: pommel03d
+    100070: pommel04d
+    100072: pommelOrigin
+    100074: top03d
+    100076: top04d
+    400000: //RootNode
+    400002: blade00d
+    400004: blade01d
+    400006: blade02d
+    400008: BladeOrigin
+    400010: grip00d
+    400012: grip01d
+    400014: grip02d
+    400016: gripEnd00d
+    400018: gripEnd01d
+    400020: gripEnd02d
+    400022: GripOrigin
+    400024: head00d
+    400026: head01d
+    400028: headEndSide00.L
+    400030: headEndSide00.R
+    400032: headEndSide01.L
+    400034: headEndSide01.R
+    400036: headEndTop00
+    400038: headEndTop01
+    400040: HeadOrigin
+    400042: pommel00d
+    400044: pommel01d
+    400046: pommel02d
+    400048: PommelOrigin
+    400050: top00d
+    400052: top01d
+    400054: top02d
+    400056: TopOrigin
+    400058: grip00End
+    400060: grip01End
+    400062: grip03d
+    400064: grip04d
+    400066: gripOrigin
+    400068: pommel03d
+    400070: pommel04d
+    400072: pommelOrigin
+    400074: top03d
+    400076: top04d
+    2100000: No Name
+    2300000: blade00d
+    2300002: blade01d
+    2300004: blade02d
+    2300006: grip00d
+    2300008: grip01d
+    2300010: grip02d
+    2300012: head00d
+    2300014: head01d
+    2300016: pommel00d
+    2300018: pommel01d
+    2300020: pommel02d
+    2300022: top00d
+    2300024: top01d
+    2300026: top02d
+    2300028: grip03d
+    2300030: grip04d
+    2300032: pommel03d
+    2300034: pommel04d
+    2300036: top03d
+    2300038: top04d
+    3300000: blade00d
+    3300002: blade01d
+    3300004: blade02d
+    3300006: grip00d
+    3300008: grip01d
+    3300010: grip02d
+    3300012: head00d
+    3300014: head01d
+    3300016: pommel00d
+    3300018: pommel01d
+    3300020: pommel02d
+    3300022: top00d
+    3300024: top01d
+    3300026: top02d
+    3300028: grip03d
+    3300030: grip04d
+    3300032: pommel03d
+    3300034: pommel04d
+    3300036: top03d
+    3300038: top04d
+    4300000: blade00d
+    4300002: blade01d
+    4300004: blade02d
+    4300006: head00d
+    4300008: head01d
+    4300010: top00d
+    4300012: top01d
+    4300014: top02d
+    4300016: grip01d
+    4300018: grip02d
+    4300020: grip00d
+    4300022: pommel00d
+    4300024: pommel01d
+    4300026: pommel02d
+    4300028: top03d
+    4300030: top04d
+    4300032: grip03d
+    4300034: grip04d
+    4300036: pommel03d
+    4300038: pommel04d
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 0
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

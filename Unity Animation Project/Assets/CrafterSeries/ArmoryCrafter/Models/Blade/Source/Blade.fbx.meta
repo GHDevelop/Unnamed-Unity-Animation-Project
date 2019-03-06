@@ -1,0 +1,187 @@
+fileFormatVersion: 2
+guid: b31ee470e1d179a4396b344695d11c38
+timeCreated: 1538390025
+licenseType: Store
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: blade00d
+    100004: blade01d
+    100006: blade02d
+    100008: bladeOrigin
+    100010: crossguard00d
+    100012: crossguard00End
+    100014: crossguard01d
+    100016: crossguard02d
+    100018: crossguard02End
+    100020: crossguard03d
+    100022: crossguard06End
+    100024: crossguard08End
+    100026: crossguardOrigin
+    100028: grip00d
+    100030: grip00End
+    100032: grip01d
+    100034: grip02d
+    100036: grip04End
+    100038: grip05End
+    100040: gripOrigin
+    100042: pommel00d
+    100044: pommel01d
+    100046: pommel02d
+    100048: pommelOrigin
+    100050: pommel03d
+    100052: pommel04d
+    400000: //RootNode
+    400002: blade00d
+    400004: blade01d
+    400006: blade02d
+    400008: bladeOrigin
+    400010: crossguard00d
+    400012: crossguard00End
+    400014: crossguard01d
+    400016: crossguard02d
+    400018: crossguard02End
+    400020: crossguard03d
+    400022: crossguard06End
+    400024: crossguard08End
+    400026: crossguardOrigin
+    400028: grip00d
+    400030: grip00End
+    400032: grip01d
+    400034: grip02d
+    400036: grip04End
+    400038: grip05End
+    400040: gripOrigin
+    400042: pommel00d
+    400044: pommel01d
+    400046: pommel02d
+    400048: pommelOrigin
+    400050: pommel03d
+    400052: pommel04d
+    2100000: No Name
+    2300000: blade00d
+    2300002: blade01d
+    2300004: blade02d
+    2300006: crossguard00d
+    2300008: crossguard01d
+    2300010: crossguard02d
+    2300012: crossguard03d
+    2300014: grip00d
+    2300016: grip01d
+    2300018: grip02d
+    2300020: pommel00d
+    2300022: pommel01d
+    2300024: pommel02d
+    2300026: pommel03d
+    2300028: pommel04d
+    3300000: blade00d
+    3300002: blade01d
+    3300004: blade02d
+    3300006: crossguard00d
+    3300008: crossguard01d
+    3300010: crossguard02d
+    3300012: crossguard03d
+    3300014: grip00d
+    3300016: grip01d
+    3300018: grip02d
+    3300020: pommel00d
+    3300022: pommel01d
+    3300024: pommel02d
+    3300026: pommel03d
+    3300028: pommel04d
+    4300000: pommel00d
+    4300002: pommel01d
+    4300004: pommel02d
+    4300006: grip00d
+    4300008: grip01d
+    4300010: grip02d
+    4300012: crossguard01d
+    4300014: crossguard00d
+    4300016: crossguard02d
+    4300018: crossguard03d
+    4300020: blade01d
+    4300022: blade00d
+    4300024: blade02d
+    4300026: pommel03d
+    4300028: pommel04d
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 0
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

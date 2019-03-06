@@ -61,11 +61,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\ShooterController.cs" />
-    <Compile Include="Assets\Scripts\TopDownCamera.cs" />
+    <Compile Include="Assets\Scripts\Camera\TopDownCamera.cs" />
+    <Compile Include="Assets\Scripts\Canvas\CanvasManager.cs" />
+    <Compile Include="Assets\Scripts\Controllers\ShooterController.cs" />
+    <Compile Include="Assets\Scripts\Enums\EnumCounter.cs" />
+    <Compile Include="Assets\Scripts\Enums\WeaponTypeEnum.cs" />
+    <Compile Include="Assets\Scripts\Health\CollisionsDealDamage.cs" />
+    <Compile Include="Assets\Scripts\Health\HealthWithSelfDestruct.cs" />
+    <Compile Include="Assets\Scripts\Pickups\Pickup.cs" />
+    <Compile Include="Assets\Scripts\Pickups\WeaponPickup.cs" />
+    <Compile Include="Assets\Scripts\Weapons\Weapon.cs" />
+    <Compile Include="Assets\Scripts\Weapons\WeaponManager.cs" />
+    <None Include="Assets\CrafterSeries\ArmoryCrafter\Reminder.txt" />
     <None Include="Assets\SimplePhysicalShader\SimplePhysicalShaderRetro.shader" />
+    <None Include="Assets\CrafterSeries\ArmoryCrafter\Dependencies\ArmoryCrafterShader.shader" />
     <None Include="Assets\SimplePhysicalShader\SimplePhysicalShader.shader" />
+    <None Include="Assets\CrafterSeries\ArmoryCrafter\Dependencies\ArmoryCrafterTextureShader.shader" />
+    <None Include="Assets\CrafterSeries\ArmoryCrafter\Changelog.txt" />
+    <None Include="Assets\FireWing\Shader\Wing_Main.shader" />
     <None Include="Assets\SimplePhysicalShader\SimplePhysicalShaderCoat.shader" />
+    <None Include="Assets\FireWing\Shader\Wing_Sub.shader" />
+    <None Include="Assets\CrafterSeries\ArmoryCrafter\Dependencies\UI\Font\Anton\OFL.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>I:/UAT/Programming for Game Engines/Unity Animation Project/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
@@ -281,6 +297,9 @@
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
+    </Reference>
+    <Reference Include="ArmoryCrafterCore">
+      <HintPath>I:/UAT/Programming for Game Engines/Unity Animation Project/Assets/CrafterSeries/ArmoryCrafter/ArmoryCrafterCore.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
       <HintPath>I:/UAT/Programming for Game Engines/Unity Animation Project/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>

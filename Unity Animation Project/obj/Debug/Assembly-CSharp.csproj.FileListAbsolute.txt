@@ -173,3 +173,4 @@ I:\UAT\Programming for Game Engines\Unity Animation Project\obj\Debug\Assembly-C
 I:\UAT\Programming for Game Engines\Unity Animation Project\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 I:\UAT\Programming for Game Engines\Unity Animation Project\obj\Debug\Assembly-CSharp.dll
 I:\UAT\Programming for Game Engines\Unity Animation Project\obj\Debug\Assembly-CSharp.pdb
+I:\UAT\Programming for Game Engines\Unity Animation Project\Temp\bin\Debug\ArmoryCrafterCore.dll
