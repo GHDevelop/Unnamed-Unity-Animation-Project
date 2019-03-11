@@ -2,37 +2,81 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Base Pickup Class. All other pickups should inherit from this.
+/// </summary>
 public abstract class Pickup : MonoBehaviour
 {
+    [Header("Edit Friendly")]
+
     [Header("Movement")]
-    [SerializeField] protected float rotationAmount = 50.0f;
-
-    [Header("Expiration")]
-    [SerializeField, Tooltip("Irrelevant if expires is false")] protected float lifetime;
-    [SerializeField] protected bool expires = false;
-
-    [HideInInspector] protected Transform myTransform;
-
-    protected virtual void Awake()
+    [Tooltip("Amount the pickup rotates while in the world."),
+        SerializeField] private float _rotationAmount = 50.0f;
+    public float RotationAmount
     {
-        myTransform = GetComponent<Transform>();
+        get { return _rotationAmount; }
+        protected set { _rotationAmount = value; }
     }
 
-    // Start is called before the first frame update
+    [Header("Expiration")]
+    [Tooltip("Duration the pickup will last for before despawning. \nIrrelevant if expires is false"),
+        SerializeField] private float _lifetime;
+    public float Lifetime
+    {
+        get { return _lifetime; }
+        protected set { _lifetime = value; }
+    }
+
+    [Tooltip("Whether the pickup expires after dropping"),
+        SerializeField] private bool _expires = false;
+    public bool Expires
+    {
+        get { return _expires; }
+        protected set { _expires = value; }
+    }
+
+    [Header("Viewing Only")]
+
+    [Tooltip("Only visible in the inspector to make sure it isn't null. \nDO NOT EDIT"),
+        SerializeField] private Transform _myTransform;
+    public Transform MyTransform
+    {
+        get { return _myTransform; }
+        protected set { _myTransform = value; }
+    }
+
+
+    /// <summary>
+    /// Just gets the pickup's transform when spawned
+    /// </summary>
+    protected virtual void Awake()
+    {
+        MyTransform = GetComponent<Transform>();
+    }
+
+    /// <summary>
+    /// Starts a self destruct timer if the object expires
+    /// </summary>
     protected virtual void Start()
     {
-        if (expires)
+        if (Expires)
         {
-            Destroy(gameObject, lifetime);
+            Destroy(gameObject, Lifetime);
         }
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Rotates while the object is in the overworld
+    /// </summary>
     protected virtual void Update()
     {
-        myTransform.Rotate(myTransform.up, rotationAmount * Time.deltaTime);
+        MyTransform.Rotate(MyTransform.up, RotationAmount * Time.deltaTime);
     }
 
+    /// <summary>
+    /// Runs whatever the child pickup does when collected.
+    /// </summary>
+    /// <param name="other"></param>
     protected void OnTriggerEnter(Collider other)
     {
         OnCollect(other);

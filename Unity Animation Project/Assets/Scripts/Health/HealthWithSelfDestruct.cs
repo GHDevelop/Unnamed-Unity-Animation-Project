@@ -5,13 +5,25 @@ using UnityEngine.Events;
 
 public class HealthWithSelfDestruct : MonoBehaviour
 {
+    [Header("Edit Friendly")]
+
     [Header("Health")]
-    [SerializeField] private float _health;
+    [Tooltip("The maximum amount of health."),
+        SerializeField] private float _maxHealth;
+    public float MaxHealth
+    {
+        get { return _maxHealth; }
+        set { _maxHealth = value; }
+    }
+
+    [Tooltip("The current health. Set automatically at runtime, but is not dangerous to edit. May want to edit for debugging"),
+        SerializeField] private float _health;
     public float Health
     {
         get { return _health; }
         set
         {
+            //In addition to lowering health, also runs any onHurt/onHeal methods set in the editor, updates the UI, and calls the built in "OnDamaged" method.
             if (value < _health)
             {
                 onHurt.Invoke();
@@ -30,30 +42,17 @@ public class HealthWithSelfDestruct : MonoBehaviour
         }
     }
 
-    [SerializeField] private float _maxHealth;
-    public float MaxHealth
-    {
-        get { return _maxHealth; }
-        set { _maxHealth = value; }
-    }
-
-    //Set by controller
-    [SerializeField] private CanvasManager _associatedCanvas;
-    public CanvasManager AssociatedCanvas
-    {
-        get { return _associatedCanvas; }
-        set { _associatedCanvas = value; }
-    }
-
     [Header("Invincibility")]
-    [SerializeField] private float _invincibilityAfterBeingHit;
+    [Tooltip("The total amount of invincibility gained after being hit."),
+        SerializeField] private float _invincibilityAfterBeingHit;
     public float InvincibilityAfterBeingHit
     {
         get { return _invincibilityAfterBeingHit; }
         set { _invincibilityAfterBeingHit = value; }
     }
 
-    [SerializeField] private bool _isInInvincibilityFrames;
+    [Tooltip("Whether the object is invincible or not. If set to true without the InvincibilityTimer coroutine, then object will never lose health"),
+        SerializeField] private bool _isInInvincibilityFrames = false;
     public bool IsInInvincibilityFrames
     {
         get { return _isInInvincibilityFrames; }
@@ -66,36 +65,74 @@ public class HealthWithSelfDestruct : MonoBehaviour
     [SerializeField, Tooltip("Raised every time Health is set and the new value is higher than the previous value")]
     private UnityEvent onHeal;
 
-    private void Awake()
+    [Header("Viewing Only")]
+    //Set by controller
+    [Tooltip("This is set by the controller attached to the same object. \nDO NOT SET THIS IN THE EDITOR."),
+        SerializeField] private CanvasManager _associatedCanvas;
+    public CanvasManager AssociatedCanvas
     {
-        IsInInvincibilityFrames = false;
+        get { return _associatedCanvas; }
+        set { _associatedCanvas = value; }
     }
 
+    /// <summary>
+    /// Sets the Health equal to the max health, and updates the associated canvas.
+    /// </summary>
     private void Start()
     {
         //Done in Start to ensure UI is present on first setting of "Health"
         Health = MaxHealth;
     }
 
+    #region "Collider Checks"
+    /***************************************************************************************************************************************************************
+     *                                                                  Collision Block. All of these call TakeDamage.
+     ***************************************************************************************************************************************************************/
     private void OnCollisionEnter(Collision collision)
     {
-        TakeDamage(collision);
+        TakeDamage(collision.collider);
     }
 
     private void OnCollisionStay(Collision collision)
     {
-        TakeDamage(collision);
+        TakeDamage(collision.collider);
     }
 
-    private void TakeDamage(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        CollisionsDealDamage collisionDealsDamage = collision.gameObject.GetComponent<CollisionsDealDamage>();
-        if (collisionDealsDamage && collisionDealsDamage.enabled && IsInInvincibilityFrames == false)
+        TakeDamage(other);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        TakeDamage(other);
+    }
+    /***************************************************************************************************************************************************************
+     *                                                                              End of Collision Block
+     ***************************************************************************************************************************************************************/
+    #endregion
+
+    /// <summary>
+    /// Runs when hit.
+    /// </summary>
+    /// <param name="collider"></param>
+    private void TakeDamage(Collider collider)
+    {
+        CollisionsDealDamage collisionDealsDamage = collider.gameObject.GetComponentInParent<CollisionsDealDamage>();
+        if (collisionDealsDamage //Collided Object has "CollisionDealsDamage" component.
+            && collisionDealsDamage.activeHitbox //If the "Hitbox" is active.
+            && collisionDealsDamage.exempt.Contains(this) == false //If this object is exempt from taking damage.
+            && IsInInvincibilityFrames == false) //If this object is invincible at the moment
         {
+            Debug.Log(collider.gameObject.name + " Hurt " + this.gameObject.name);
             Health -= collisionDealsDamage.damage;
         }
     }
 
+    /// <summary>
+    /// Called by the setter for health. If health is below 0 the object is destroyed, otherwise invincibility is enabled.
+    /// </summary>
+    /// <param name="newHealth"></param>
     private void OnDamaged(float newHealth)
     {
         if (newHealth <= 0)
@@ -108,6 +145,12 @@ public class HealthWithSelfDestruct : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// Coroutine. Sets object to invincible, runs a timer for the invincibility duration, then disables invincibility.
+    /// </summary>
+    /// <param name="baseInvincibilityTime"></param>
+    /// <returns></returns>
     private IEnumerator InvincibilityTimer(float baseInvincibilityTime)
     {
         IsInInvincibilityFrames = true;

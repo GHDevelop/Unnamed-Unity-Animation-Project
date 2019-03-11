@@ -28,6 +28,7 @@ public class ShooterController : MonoBehaviour
     [SerializeField] private Animator characterAnimator;
     [SerializeField] private Transform myTransform;
     [SerializeField] private HealthWithSelfDestruct health;
+    [SerializeField] private WeaponManager weaponManager;
 
     [Header("Generated Objects")]
     [SerializeField] private Transform mouseObject;
@@ -37,10 +38,15 @@ public class ShooterController : MonoBehaviour
         characterAnimator = this.GetComponent<Animator>();
         myTransform = this.GetComponent<Transform>();
         health = this.GetComponent<HealthWithSelfDestruct>();
+        weaponManager = this.GetComponent<WeaponManager>();
 
         if (health != null && associatedCanvas != null)
         {
             health.AssociatedCanvas = this.associatedCanvas;
+        }
+        if (weaponManager != null && associatedCanvas != null)
+        {
+            weaponManager.AssociatedCanvas = this.associatedCanvas;
         }
 
         MakeMouseCursorObject();

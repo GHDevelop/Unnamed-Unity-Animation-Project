@@ -4,23 +4,20 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    [Header("Weapon's Transform (don't touch)")]
-    [SerializeField] private Transform _myTransform;
-    public Transform MyTransform
-    {
-        get { return _myTransform; }
-        private set { _myTransform = value; }
-    }
+    [Header("Manually Set")]
 
     [Header("Handles")]
-    [SerializeField] private Transform _lHandle;
+
+    [Tooltip("Where the left hand of the character grabs."),
+        SerializeField] private Transform _lHandle;
     public Transform LHandle
     {
         get { return _lHandle; }
         private set {_lHandle = value; }
     }
 
-    [SerializeField] private Transform _rHandle;
+    [Tooltip("Where the right hand of the character grabs."),
+        SerializeField] private Transform _rHandle;
     public Transform RHandle
     {
         get { return _rHandle; }
@@ -35,15 +32,58 @@ public class Weapon : MonoBehaviour
         private set { _weaponType = value; }
     }
 
-    // Start is called before the first frame update
+    [Header("Viewing Only")]
+
+    [Header("Weapon's Transform (don't touch)")]
+    [SerializeField] private Transform _myTransform;
+    public Transform MyTransform
+    {
+        get { return _myTransform; }
+        private set { _myTransform = value; }
+    }
+
+    [Tooltip("The animator for this weapon"),
+        SerializeField] private Animator _animator;
+    public Animator Animator
+    {
+        get { return _animator; }
+        protected set { _animator = value; }
+    }
+
+    [Tooltip("If this is present, collision with this object will deal damage."),
+        SerializeField] private CollisionsDealDamage _damageFlag;
+    public CollisionsDealDamage DamageFlag
+    {
+        get { return _damageFlag; }
+        protected set { _damageFlag = value; }
+    }
+
+    /// <summary>
+    /// GetComponent
+    /// </summary>
     void Start()
     {
         MyTransform = GetComponent<Transform>();
+        Animator = GetComponent<Animator>();
+        DamageFlag = GetComponent<CollisionsDealDamage>();
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Nothing
+    /// </summary>
     void Update()
     {
-        
+        //Do nothing for now
+    }
+
+    /// <summary>
+    /// Plays an animation for "swinging" the weapon
+    /// </summary>
+    public virtual void Fire()
+    {
+        if (Animator)
+        {
+            Animator.Play("Swing");
+        }
     }
 }

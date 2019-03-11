@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Artillery Tank\Demo Scene\CameraController.cs" />
     <Compile Include="Assets\Scripts\Camera\TopDownCamera.cs" />
     <Compile Include="Assets\Scripts\Canvas\CanvasManager.cs" />
     <Compile Include="Assets\Scripts\Controllers\ShooterController.cs" />
@@ -70,6 +71,9 @@
     <Compile Include="Assets\Scripts\Health\HealthWithSelfDestruct.cs" />
     <Compile Include="Assets\Scripts\Pickups\Pickup.cs" />
     <Compile Include="Assets\Scripts\Pickups\WeaponPickup.cs" />
+    <Compile Include="Assets\Scripts\Spawners\BasicSpawner.cs" />
+    <Compile Include="Assets\Scripts\Weapons\Bullet\Bullet.cs" />
+    <Compile Include="Assets\Scripts\Weapons\ShootingWeapon.cs" />
     <Compile Include="Assets\Scripts\Weapons\Weapon.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponManager.cs" />
     <None Include="Assets\CrafterSeries\ArmoryCrafter\Reminder.txt" />
