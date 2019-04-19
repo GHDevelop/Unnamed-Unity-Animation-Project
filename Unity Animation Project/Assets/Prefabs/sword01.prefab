@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 1904668724}
   - component: {fileID: 1904668730}
   - component: {fileID: 3053312697676506665}
+  - component: {fileID: 191842622422366281}
   m_Layer: 0
   m_Name: sword01
   m_TagString: Untagged
@@ -208,6 +209,8 @@ MonoBehaviour:
   _lHandle: {fileID: 931372104}
   _rHandle: {fileID: 1492991654}
   _weaponType: 1
+  _firingRadius: 5
+  _firingRange: 4.5
   _myTransform: {fileID: 0}
   _animator: {fileID: 0}
   _damageFlag: {fileID: 0}
@@ -226,3 +229,16 @@ MonoBehaviour:
   damage: 300
   activeHitbox: 0
   exempt: []
+  hitDisjoint: 0
+--- !u!114 &191842622422366281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904668723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7efdb4ba1edeb0c4ab457f417bcca0fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

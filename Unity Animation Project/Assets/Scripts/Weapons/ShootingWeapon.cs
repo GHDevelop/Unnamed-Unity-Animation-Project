@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ShootingWeapon : Weapon
 {
+    [Header("Shooting Weapon")]
+
     [SerializeField] private float cooldown = 1.0f;
     [SerializeField] private bool canShoot = true;
     [SerializeField] private float bulletSpread = 0.0f;

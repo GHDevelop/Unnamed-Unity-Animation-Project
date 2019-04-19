@@ -24,10 +24,10 @@ public class HealthWithSelfDestruct : MonoBehaviour
         set
         {
             //In addition to lowering health, also runs any onHurt/onHeal methods set in the editor, updates the UI, and calls the built in "OnDamaged" method.
-            if (value < _health)
+            if (value <= _health)
             {
                 onHurt.Invoke();
-                OnDamaged(value);
+                StartInvincibilityOrDestroy(value);
             }
             else if (value > _health)
             {
@@ -37,7 +37,7 @@ public class HealthWithSelfDestruct : MonoBehaviour
             _health = Mathf.Clamp(value, 0, MaxHealth);
             if (AssociatedCanvas != null)
             {
-                AssociatedCanvas.HPPercentText = ((_health / MaxHealth) * 100).ToString();
+                AssociatedCanvas.UpdateHPGraphics(_health / MaxHealth);
             }
         }
     }
@@ -64,6 +64,8 @@ public class HealthWithSelfDestruct : MonoBehaviour
     private UnityEvent onHurt;
     [SerializeField, Tooltip("Raised every time Health is set and the new value is higher than the previous value")]
     private UnityEvent onHeal;
+    [SerializeField, Tooltip("Raised On Death")]
+    private UnityEvent onDeath;
 
     [Header("Viewing Only")]
     //Set by controller
@@ -75,6 +77,11 @@ public class HealthWithSelfDestruct : MonoBehaviour
         set { _associatedCanvas = value; }
     }
 
+    private void Awake()
+    {
+        //Nothing for now
+    }
+
     /// <summary>
     /// Sets the Health equal to the max health, and updates the associated canvas.
     /// </summary>
@@ -82,6 +89,7 @@ public class HealthWithSelfDestruct : MonoBehaviour
     {
         //Done in Start to ensure UI is present on first setting of "Health"
         Health = MaxHealth;
+        //onDeath.AddListener(NotifyGameManagerOfDeath);
     }
 
     #region "Collider Checks"
@@ -95,7 +103,10 @@ public class HealthWithSelfDestruct : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        TakeDamage(collision.collider);
+        if (GameManager.BowBeforeMe.Paused == false)
+        {
+            TakeDamage(collision.collider);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -105,7 +116,10 @@ public class HealthWithSelfDestruct : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        TakeDamage(other);
+        if (GameManager.BowBeforeMe.Paused == false)
+        {
+            TakeDamage(other);
+        }
     }
     /***************************************************************************************************************************************************************
      *                                                                              End of Collision Block
@@ -122,7 +136,8 @@ public class HealthWithSelfDestruct : MonoBehaviour
         if (collisionDealsDamage //Collided Object has "CollisionDealsDamage" component.
             && collisionDealsDamage.activeHitbox //If the "Hitbox" is active.
             && collisionDealsDamage.exempt.Contains(this) == false //If this object is exempt from taking damage.
-            && IsInInvincibilityFrames == false) //If this object is invincible at the moment
+            && IsInInvincibilityFrames == false //If this object is invincible at the moment
+            && collisionDealsDamage.hitDisjoint == false) //If the part of the object hit is part of the object's body, used to prevent damaging characters by hitting their weapons
         {
             Debug.Log(collider.gameObject.name + " Hurt " + this.gameObject.name);
             Health -= collisionDealsDamage.damage;
@@ -133,11 +148,13 @@ public class HealthWithSelfDestruct : MonoBehaviour
     /// Called by the setter for health. If health is below 0 the object is destroyed, otherwise invincibility is enabled.
     /// </summary>
     /// <param name="newHealth"></param>
-    private void OnDamaged(float newHealth)
+    public void StartInvincibilityOrDestroy(float newHealth)
     {
         if (newHealth <= 0)
         {
-            Destroy(gameObject);
+            onDeath.Invoke();
+            onDeath.RemoveAllListeners();
+            Destroy(this.gameObject);
         }
         else
         {
@@ -162,5 +179,13 @@ public class HealthWithSelfDestruct : MonoBehaviour
         }
 
         IsInInvincibilityFrames = false;
+    }
+
+    public void NotifyGameManagerOfDeath()
+    {
+        if (GameManager.BowBeforeMe != null)
+        {
+            GameManager.BowBeforeMe.OnPlayerDeath();
+        }
     }
 }

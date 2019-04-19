@@ -11,7 +11,8 @@ public abstract class Pickup : MonoBehaviour
 
     [Header("Movement")]
     [Tooltip("Amount the pickup rotates while in the world."),
-        SerializeField] private float _rotationAmount = 50.0f;
+        SerializeField]
+    private float _rotationAmount = 50.0f;
     public float RotationAmount
     {
         get { return _rotationAmount; }
@@ -20,7 +21,8 @@ public abstract class Pickup : MonoBehaviour
 
     [Header("Expiration")]
     [Tooltip("Duration the pickup will last for before despawning. \nIrrelevant if expires is false"),
-        SerializeField] private float _lifetime;
+        SerializeField]
+    private float _lifetime;
     public float Lifetime
     {
         get { return _lifetime; }
@@ -28,7 +30,8 @@ public abstract class Pickup : MonoBehaviour
     }
 
     [Tooltip("Whether the pickup expires after dropping"),
-        SerializeField] private bool _expires = false;
+        SerializeField]
+    private bool _expires = false;
     public bool Expires
     {
         get { return _expires; }
@@ -38,7 +41,8 @@ public abstract class Pickup : MonoBehaviour
     [Header("Viewing Only")]
 
     [Tooltip("Only visible in the inspector to make sure it isn't null. \nDO NOT EDIT"),
-        SerializeField] private Transform _myTransform;
+        SerializeField]
+    private Transform _myTransform;
     public Transform MyTransform
     {
         get { return _myTransform; }
@@ -70,6 +74,10 @@ public abstract class Pickup : MonoBehaviour
     /// </summary>
     protected virtual void Update()
     {
+        if (GameManager.BowBeforeMe.Paused)
+        {
+            return;
+        }
         MyTransform.Rotate(MyTransform.up, RotationAmount * Time.deltaTime);
     }
 

@@ -3363,10 +3363,12 @@ MonoBehaviour:
   vertical: Vertical
   horizontalAxis: Horizontal
   verticalAxis: Vertical
-  associatedCanvas: {fileID: 0}
+  _associatedCanvas: {fileID: 0}
   characterAnimator: {fileID: 0}
   myTransform: {fileID: 0}
   health: {fileID: 0}
+  weaponManager: {fileID: 0}
+  rigidbody: {fileID: 0}
   mouseObject: {fileID: 0}
 --- !u!114 &646039944
 MonoBehaviour:
@@ -3382,9 +3384,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponAnimatorParamName: EquippedWeapon
   weaponPositionParent: {fileID: 342591176}
-  equippedWeapon: {fileID: 0}
+  _equippedWeapon: {fileID: 0}
+  _associatedCanvas: {fileID: 0}
   health: {fileID: 0}
   animator: {fileID: 0}
+  myTransform: {fileID: 0}
 --- !u!114 &646039945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3397,9 +3401,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35209581ef93edb47ae8467495bd0a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 0
   _maxHealth: 236
-  _associatedCanvas: {fileID: 0}
+  _health: 0
   _invincibilityAfterBeingHit: 5
   _isInInvincibilityFrames: 0
   onHurt:
@@ -3412,6 +3415,23 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  onDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 646039945}
+        m_MethodName: NotifyGameManagerOfDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  _associatedCanvas: {fileID: 0}
 --- !u!1 &1967345804387800
 GameObject:
   m_ObjectHideFlags: 0

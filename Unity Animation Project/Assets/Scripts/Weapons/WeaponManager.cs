@@ -67,9 +67,9 @@ public class WeaponManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Fire()
     {
-        if (Input.GetKeyDown(KeyCode.Z) && EquippedWeapon)
+        if (EquippedWeapon)
         {
             EquippedWeapon.Fire();
         }

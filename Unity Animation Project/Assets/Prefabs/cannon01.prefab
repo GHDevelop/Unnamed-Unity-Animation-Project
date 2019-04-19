@@ -244,6 +244,7 @@ GameObject:
   - component: {fileID: 67154688}
   - component: {fileID: 67154686}
   - component: {fileID: 7100282424027740185}
+  - component: {fileID: 1493924086535203355}
   m_Layer: 0
   m_Name: cannon01
   m_TagString: Untagged
@@ -372,15 +373,29 @@ MonoBehaviour:
   _lHandle: {fileID: 0}
   _rHandle: {fileID: 1029633522}
   _weaponType: 2
+  _firingRadius: 5
+  _firingRange: 9
   _myTransform: {fileID: 0}
   _animator: {fileID: 0}
   _damageFlag: {fileID: 0}
   cooldown: 1
   canShoot: 1
   bulletSpread: 3
-  numShots: 1000
+  numShots: 5
   firingPosition: {fileID: 9025846000623315324}
   bullet: {fileID: 6941868685135311952, guid: d30951932f0eef14f927730ddf8d53e4, type: 3}
+--- !u!114 &1493924086535203355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67154683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7efdb4ba1edeb0c4ab457f417bcca0fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &75897567
 GameObject:
   m_ObjectHideFlags: 0
@@ -3342,7 +3357,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3911121794968719619}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.27, z: 4.818}
+  m_LocalPosition: {x: -0.94, y: 0.73, z: 4.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 67154685}

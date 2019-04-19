@@ -36,6 +36,11 @@ public class Bullet : MonoBehaviour
     /// </summary>
     void Update()
     {
+        if (GameManager.BowBeforeMe.Paused)
+        {
+            return;
+        }
+
         myRigidbody.AddRelativeForce(Vector3.forward * speed * Time.deltaTime, ForceMode.VelocityChange);
     }
 

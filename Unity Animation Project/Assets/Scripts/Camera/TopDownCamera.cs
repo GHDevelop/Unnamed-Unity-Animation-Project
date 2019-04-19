@@ -20,9 +20,18 @@ public class TopDownCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.BowBeforeMe.Paused)
+        {
+            return;
+        }
+
         if (objectToFollow != null)
         {
             SetCameraPositionToOffsetFromObject();
+        }
+        else
+        {
+            objectToFollow = GameManager.BowBeforeMe.Player.gameObject.GetComponent<Transform>();
         }
     }
 

@@ -7,7 +7,7 @@ public class BasicSpawner : MonoBehaviour
     [Header("Manually Set")]
 
     [Tooltip("The object to spawn as a Game Object"),
-        SerializeField] private GameObject objectToSpawn;
+        SerializeField] protected GameObject objectToSpawn;
 
     [Tooltip("The time until the object respawns."),
         SerializeField] private float timeToRespawn;
@@ -47,6 +47,11 @@ public class BasicSpawner : MonoBehaviour
     /// </summary>
     void Update()
     {
+        if (GameManager.BowBeforeMe.Paused)
+        {
+            return;
+        }
+
         RemoveDestroyedObjectsFromList();
         SpawnObjectIfAble();
     }
@@ -54,7 +59,7 @@ public class BasicSpawner : MonoBehaviour
     /// <summary>
     /// Starts the timer to spawn an object if the spawner is able to.
     /// </summary>
-    private void SpawnObjectIfAble()
+    protected virtual void SpawnObjectIfAble()
     {
         if (objectsSpawned.Count < numObjectsToSpawnMax && isCoroutineRunning == false)
         {
@@ -80,7 +85,7 @@ public class BasicSpawner : MonoBehaviour
     /// Timer for spawning objects.
     /// </summary>
     /// <returns></returns>
-    private IEnumerator SpawnObjectAfterTimer()
+    protected virtual IEnumerator SpawnObjectAfterTimer()
     {
         isCoroutineRunning = true;
 
@@ -89,7 +94,12 @@ public class BasicSpawner : MonoBehaviour
             yield return null;
         }
 
-        objectsSpawned.Add(Instantiate(objectToSpawn, myTransform.position, myTransform.rotation));
+        Spawn();
         isCoroutineRunning = false;
+    }
+
+    protected virtual void Spawn()
+    {
+        objectsSpawned.Add(Instantiate(objectToSpawn, myTransform.position, myTransform.rotation));
     }
 }

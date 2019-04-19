@@ -32,10 +32,39 @@ public class Weapon : MonoBehaviour
         private set { _weaponType = value; }
     }
 
+    [Header("AI Parameters")]
+    [SerializeField] private float _firingRadius;
+    public float FiringRadius
+    {
+        get
+        {
+            return _firingRadius;
+        }
+
+        set
+        {
+            _firingRadius = value;
+        }
+    }
+
+    [SerializeField] private float _firingRange;
+    public float FiringRange
+    {
+        get
+        {
+            return _firingRange;
+        }
+
+        set
+        {
+            _firingRange = value;
+        }
+    }
+
     [Header("Viewing Only")]
 
-    [Header("Weapon's Transform (don't touch)")]
-    [SerializeField] private Transform _myTransform;
+    [Tooltip("Weapon's Transform (don't touch)"),
+        SerializeField] private Transform _myTransform;
     public Transform MyTransform
     {
         get { return _myTransform; }

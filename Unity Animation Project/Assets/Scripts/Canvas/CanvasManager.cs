@@ -22,13 +22,23 @@ public class CanvasManager : MonoBehaviour
         get { return _hpPercentText.text; }
         set
         {
-            float? valueAsNumber = float.Parse(value);
+            float? valueAsNumber = float.Parse(value) * 100;
             if (valueAsNumber != null)
             {
                 valueAsNumber = Mathf.Ceil((float)valueAsNumber);
                 string messageToInsertInText = string.Format(HPTextString, valueAsNumber);
                 _hpPercentText.text = messageToInsertInText;
             }
+        }
+    }
+
+    [Tooltip("The slider used to represent hp behind the text"),
+        SerializeField] private Slider _hpSlider;
+    public float HPSlider
+    {
+        set
+        {
+            _hpSlider.value = value;
         }
     }
 
@@ -40,26 +50,69 @@ public class CanvasManager : MonoBehaviour
         set { _weaponTypeText.text = value; }
     }
 
+    [Tooltip("The text used to represent the remaining number of lives"),
+        SerializeField] private Text _livesText;
+    public int LivesText
+    {
+        set
+        {
+            if (_livesText != null)
+            {
+                string livesString = "";
+                for (int index = 0; index < value; index++)
+                {
+                    livesString += "❤️";
+                }
+
+                _livesText.text = livesString;
+            }
+        }
+    }
+
     [Header("Viewing Only")]
 
     [Tooltip("The canvas attached to the Canvas manager's object. Set automatically"),
-        SerializeField]
-    private Canvas _attachedCanvas;
+        SerializeField] private Canvas _attachedCanvas;
     public Canvas AttachedCanvas
     {
         get { return _attachedCanvas; }
         set { _attachedCanvas = value; }
     }
 
+    [Tooltip("The attached transform, used to rotate canvas to camera if it is rendered in world space"),
+        SerializeField] private Transform _myTransform;
+    public Transform MyTransform
+    {
+        get
+        {
+            return _myTransform;
+        }
+
+        set
+        {
+            _myTransform = value;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         AttachedCanvas = GetComponent<Canvas>();
+        MyTransform = GetComponent<Transform>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Does nothing for now.
+        if (AttachedCanvas.renderMode == RenderMode.WorldSpace)
+        {
+            MyTransform.rotation = Quaternion.LookRotation(Camera.main.transform.position - MyTransform.position, Vector3.up);
+        }
+    }
+
+    public void UpdateHPGraphics(float newHPPercent)
+    {
+        HPPercentText = newHPPercent.ToString();
+        HPSlider = newHPPercent;
     }
 }

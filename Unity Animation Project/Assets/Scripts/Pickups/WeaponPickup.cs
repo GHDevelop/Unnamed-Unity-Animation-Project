@@ -7,7 +7,8 @@ public class WeaponPickup : Pickup
 {
     [Header("Weapon Component")]
     [Tooltip("Contains the attached WeaponComponent. Set automatically. \nDO NOT TOUCH"),
-        SerializeField] private Weapon _weaponInfo;
+        SerializeField]
+    private Weapon _weaponInfo;
     public Weapon WeaponInfo
     {
         get { return _weaponInfo; }
@@ -28,6 +29,10 @@ public class WeaponPickup : Pickup
     /// </summary>
     protected override void Update()
     {
+        if (GameManager.BowBeforeMe.Paused)
+        {
+            return;
+        }
         base.Update();
     }
 
