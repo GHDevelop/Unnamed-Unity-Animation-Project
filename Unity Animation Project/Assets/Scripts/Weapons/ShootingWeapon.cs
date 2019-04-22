@@ -24,6 +24,15 @@ public class ShootingWeapon : Weapon
                 activeBullet.gameObject.layer = this.gameObject.layer;
             }
             StartCoroutine("ShotCooldown");
+
+            if (AudioSource)
+            {
+                AudioSource.Play();
+            }
+            if (ParticleEffect)
+            {
+                ParticleEffect.Emit(1);
+            }
         }
     }
 

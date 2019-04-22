@@ -57,7 +57,10 @@ public class RagdollControls : MonoBehaviour {
         mainCollider.enabled = false;
         mainRigidbody.isKinematic = true;
         anim.enabled = false;
-        agent.enabled = false;
+        if (agent)
+        {
+            agent.enabled = false;
+        }
     }
 
     public void DeactivateRagdoll()
@@ -75,7 +78,10 @@ public class RagdollControls : MonoBehaviour {
         // Turn ON the main stuff
         mainCollider.enabled = true;
         mainRigidbody.isKinematic = false;
-        agent.enabled = true;
+        if (agent)
+        {
+            agent.enabled = true;
+        }
         anim.enabled = true;
     }
 }

@@ -104,10 +104,7 @@ public class CanvasManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (AttachedCanvas.renderMode == RenderMode.WorldSpace)
-        {
-            MyTransform.rotation = Quaternion.LookRotation(Camera.main.transform.position - MyTransform.position, Vector3.up);
-        }
+        //Does nothing
     }
 
     public void UpdateHPGraphics(float newHPPercent)

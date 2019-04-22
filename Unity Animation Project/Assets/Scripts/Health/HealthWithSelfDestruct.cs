@@ -59,6 +59,21 @@ public class HealthWithSelfDestruct : MonoBehaviour
         set { _isInInvincibilityFrames = value; }
     }
 
+    [Tooltip("Time in which the body will persist after death"),
+        SerializeField] private float _timeFromDeathToDeleteCorpse = 3.0f;
+    public float TimeFromDeathToDeleteCorpse
+    {
+        get
+        {
+            return _timeFromDeathToDeleteCorpse;
+        }
+
+        set
+        {
+            _timeFromDeathToDeleteCorpse = value;
+        }
+    }
+
     [Header("Events")]
     [SerializeField, Tooltip("Raised every time Health is set and the new value is lower than the previous value")]
     private UnityEvent onHurt;
@@ -77,9 +92,16 @@ public class HealthWithSelfDestruct : MonoBehaviour
         set { _associatedCanvas = value; }
     }
 
+    private ShooterController _associatedController;
+    public ShooterController AssociatedController
+    {
+        get { return _associatedController; }
+        set { _associatedController = value; }
+    }
+
     private void Awake()
     {
-        //Nothing for now
+        AssociatedController = this.GetComponent<ShooterController>();
     }
 
     /// <summary>
@@ -103,7 +125,7 @@ public class HealthWithSelfDestruct : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if (GameManager.BowBeforeMe.Paused == false)
+        if (GameManager.Me.Paused == false)
         {
             TakeDamage(collision.collider);
         }
@@ -116,7 +138,7 @@ public class HealthWithSelfDestruct : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (GameManager.BowBeforeMe.Paused == false)
+        if (GameManager.Me.Paused == false)
         {
             TakeDamage(other);
         }
@@ -154,7 +176,11 @@ public class HealthWithSelfDestruct : MonoBehaviour
         {
             onDeath.Invoke();
             onDeath.RemoveAllListeners();
-            Destroy(this.gameObject);
+            if (this.AssociatedController)
+            {
+                Destroy(this.AssociatedController);
+            }
+            Destroy(this.gameObject, TimeFromDeathToDeleteCorpse);
         }
         else
         {
@@ -183,9 +209,9 @@ public class HealthWithSelfDestruct : MonoBehaviour
 
     public void NotifyGameManagerOfDeath()
     {
-        if (GameManager.BowBeforeMe != null)
+        if (GameManager.Me != null)
         {
-            GameManager.BowBeforeMe.OnPlayerDeath();
+            GameManager.Me.OnPlayerDeath();
         }
     }
 }

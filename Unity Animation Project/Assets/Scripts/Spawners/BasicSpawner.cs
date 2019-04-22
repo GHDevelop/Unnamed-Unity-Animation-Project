@@ -47,7 +47,7 @@ public class BasicSpawner : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if (GameManager.BowBeforeMe.Paused)
+        if (GameManager.Me.Paused)
         {
             return;
         }

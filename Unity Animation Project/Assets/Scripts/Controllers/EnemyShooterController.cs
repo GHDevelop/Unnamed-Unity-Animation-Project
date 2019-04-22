@@ -111,16 +111,27 @@ public class EnemyShooterController : ShooterController
         }
     }
 
+    protected override void MakeMouseCursorObject()
+    {
+        //does nothing
+    }
+
     //start is used instead of awake to guarantee the game manager loads in first
     protected override void Start()
     {
-        GameManager.BowBeforeMe.Enemies.Add(this);
+        GameManager.Me.Enemies.Add(this);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.BowBeforeMe.Paused)
+        if (navigationAgent && navigationAgent.enabled)
+        {
+            rigidbody.velocity = Vector3.zero;
+        }
+
+
+        if (GameManager.Me.Paused)
         {
             return;
         }
@@ -161,9 +172,9 @@ public class EnemyShooterController : ShooterController
             characterAnimator.SetFloat(horizontal, 0);
             characterAnimator.SetFloat(vertical, 0);
 
-            if (GameManager.BowBeforeMe.Player != null)
+            if (GameManager.Me.Player != null)
             {
-                Target = GameManager.BowBeforeMe.Player.GetComponent<Transform>();
+                Target = GameManager.Me.Player.GetComponent<Transform>();
             }
         }
     }
@@ -190,9 +201,10 @@ public class EnemyShooterController : ShooterController
 
     protected override void OnDestroy()
     {
-        if (GameManager.BowBeforeMe.Enemies.Contains(this))
+        if (GameManager.Me.Enemies.Contains(this))
         {
-            GameManager.BowBeforeMe.Enemies.Remove(this);
+            GameManager.Me.Enemies.Remove(this);
+            GameManager.Me.EnemiesKilled++;
         }
     }
 
@@ -203,11 +215,11 @@ public class EnemyShooterController : ShooterController
         OffMeshLinkData linkData = navigationAgent.currentOffMeshLinkData; //gets information pertaining to the off mesh link.
 
         characterAnimator.SetBool("OML", true);
-        rigidbody.isKinematic = true;
+        //rigidbody.isKinematic = true;
         Vector3 offset;
         do
         {
-            offset = linkData.endPos - myTransform.position;
+            offset = linkData.endPos - myTransform.position; 
             Ground();
 
             characterAnimator.SetFloat("OMLDistanceXZ", Vector3.ProjectOnPlane(offset, Vector3.up).magnitude);
@@ -227,7 +239,7 @@ public class EnemyShooterController : ShooterController
         navigationAgent.ActivateCurrentOffMeshLink(true);
         onOffMeshLink = null;
         characterAnimator.SetBool("OML", false);
-        rigidbody.isKinematic = false;
+        //rigidbody.isKinematic = false;
     }
 
     private int DisableNavMeshAgent()

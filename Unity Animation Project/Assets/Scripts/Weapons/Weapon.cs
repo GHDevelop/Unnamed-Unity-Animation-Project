@@ -87,6 +87,36 @@ public class Weapon : MonoBehaviour
         protected set { _damageFlag = value; }
     }
 
+    [Tooltip("Weapon sound effect"),
+        SerializeField] private AudioSource _audioSource;
+    public AudioSource AudioSource
+    {
+        get
+        {
+            return _audioSource;
+        }
+
+        set
+        {
+            _audioSource = value;
+        }
+    }
+
+    [Tooltip("Particle Emitted When Shot"),
+        SerializeField] private ParticleSystem _particleEffect;
+    public ParticleSystem ParticleEffect
+    {
+        get
+        {
+            return _particleEffect;
+        }
+
+        set
+        {
+            _particleEffect = value;
+        }
+    }
+
     /// <summary>
     /// GetComponent
     /// </summary>
@@ -95,6 +125,8 @@ public class Weapon : MonoBehaviour
         MyTransform = GetComponent<Transform>();
         Animator = GetComponent<Animator>();
         DamageFlag = GetComponent<CollisionsDealDamage>();
+        AudioSource = GetComponent<AudioSource>();
+        ParticleEffect = GetComponentInChildren<ParticleSystem>();
     }
 
     /// <summary>
@@ -113,6 +145,15 @@ public class Weapon : MonoBehaviour
         if (Animator)
         {
             Animator.Play("Swing");
+
+            if (AudioSource)
+            {
+                AudioSource.Play();
+            }
+            if (ParticleEffect)
+            {
+                ParticleEffect.Emit(1);
+            }
         }
     }
 }

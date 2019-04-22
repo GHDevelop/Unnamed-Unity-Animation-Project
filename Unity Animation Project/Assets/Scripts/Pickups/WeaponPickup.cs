@@ -29,7 +29,7 @@ public class WeaponPickup : Pickup
     /// </summary>
     protected override void Update()
     {
-        if (GameManager.BowBeforeMe.Paused)
+        if (GameManager.Me.Paused)
         {
             return;
         }

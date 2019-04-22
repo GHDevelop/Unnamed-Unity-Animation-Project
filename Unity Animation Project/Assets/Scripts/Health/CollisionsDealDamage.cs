@@ -20,7 +20,7 @@ public class CollisionsDealDamage : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if (GameManager.BowBeforeMe.Paused == false)
+        if (GameManager.Me.Paused == false)
         {
             DisjointCheck(collision.collider);
         }
@@ -33,7 +33,7 @@ public class CollisionsDealDamage : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (GameManager.BowBeforeMe.Paused == false)
+        if (GameManager.Me.Paused == false)
         {
             DisjointCheck(other);
         }
@@ -50,7 +50,7 @@ public class CollisionsDealDamage : MonoBehaviour
         {
             for (int index = 0; index < exempt.Count; index++)
             {
-                if (exempt[index].gameObject == collider.gameObject)
+                if (exempt[index] == null || exempt[index].gameObject == collider.gameObject)
                 {
                     return;
                 }

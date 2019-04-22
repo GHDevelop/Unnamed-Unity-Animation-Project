@@ -62,14 +62,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Artillery Tank\Demo Scene\CameraController.cs" />
-    <Compile Include="Assets\GameManager.cs" />
+    <Compile Include="Assets\Scripts\ButtonFunctions.cs" />
     <Compile Include="Assets\Scripts\Camera\TopDownCamera.cs" />
     <Compile Include="Assets\Scripts\Canvas\CanvasManager.cs" />
+    <Compile Include="Assets\Scripts\Canvas\OptionsCanvasManager.cs" />
     <Compile Include="Assets\Scripts\Controllers\EnemyShooterController.cs" />
     <Compile Include="Assets\Scripts\Controllers\ShooterController.cs" />
     <Compile Include="Assets\Scripts\Drops\RandomDrops.cs" />
     <Compile Include="Assets\Scripts\Enums\EnumCounter.cs" />
     <Compile Include="Assets\Scripts\Enums\WeaponTypeEnum.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Health\CollisionsDealDamage.cs" />
     <Compile Include="Assets\Scripts\Health\Disjoint.cs" />
     <Compile Include="Assets\Scripts\Health\HealthWithSelfDestruct.cs" />
@@ -79,6 +81,7 @@
     <Compile Include="Assets\Scripts\Provided\Scripts\CharacterController.cs" />
     <Compile Include="Assets\Scripts\Provided\Scripts\FollowGameObject.cs" />
     <Compile Include="Assets\Scripts\Provided\Scripts\Pawn.cs" />
+    <Compile Include="Assets\Scripts\Resources\Billboard.cs" />
     <Compile Include="Assets\Scripts\Resources\SerializableDictionaryObject.cs" />
     <Compile Include="Assets\Scripts\SceneView\RedBoxVisual.cs" />
     <Compile Include="Assets\Scripts\Spawners\BasicSpawner.cs" />
@@ -90,11 +93,16 @@
     <None Include="Assets\CrafterSeries\ArmoryCrafter\Reminder.txt" />
     <None Include="Assets\SimplePhysicalShader\SimplePhysicalShaderRetro.shader" />
     <None Include="Assets\CrafterSeries\ArmoryCrafter\Dependencies\ArmoryCrafterShader.shader" />
+    <None Include="Assets\Free Pack\Metal Loop Pack\readme Unity.txt" />
+    <None Include="Assets\Free Pack\Door SFX Pack\Readme.txt" />
     <None Include="Assets\SimplePhysicalShader\SimplePhysicalShader.shader" />
     <None Include="Assets\CrafterSeries\ArmoryCrafter\Dependencies\ArmoryCrafterTextureShader.shader" />
     <None Include="Assets\CrafterSeries\ArmoryCrafter\Changelog.txt" />
     <None Include="Assets\FireWing\Shader\Wing_Main.shader" />
+    <None Include="Assets\Free Pack\Rock Loops Pack\Unity Readme.txt" />
     <None Include="Assets\SimplePhysicalShader\SimplePhysicalShaderCoat.shader" />
+    <None Include="Assets\Free Pack\Tropical Moments\Tropical Moments readme.txt" />
+    <None Include="Assets\Free Pack\Rock Stingers Pack\Unity Readme.txt" />
     <None Include="Assets\FireWing\Shader\Wing_Sub.shader" />
     <None Include="Assets\CrafterSeries\ArmoryCrafter\Dependencies\UI\Font\Anton\OFL.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">

@@ -20,7 +20,7 @@ public class TopDownCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.BowBeforeMe.Paused)
+        if (GameManager.Me.Paused)
         {
             return;
         }
@@ -31,7 +31,10 @@ public class TopDownCamera : MonoBehaviour
         }
         else
         {
-            objectToFollow = GameManager.BowBeforeMe.Player.gameObject.GetComponent<Transform>();
+            if (GameManager.Me && GameManager.Me.Player)
+            {
+                objectToFollow = GameManager.Me.Player.gameObject.GetComponent<Transform>();
+            }
         }
     }
 

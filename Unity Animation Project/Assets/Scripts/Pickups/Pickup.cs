@@ -74,7 +74,7 @@ public abstract class Pickup : MonoBehaviour
     /// </summary>
     protected virtual void Update()
     {
-        if (GameManager.BowBeforeMe.Paused)
+        if (GameManager.Me.Paused)
         {
             return;
         }

@@ -19,14 +19,19 @@ public class Bullet : MonoBehaviour
         SerializeField]
     public float damageModifierFromSource = 1;
 
+    private Transform myTransform;
     private Rigidbody myRigidbody;
+    private ParticleSystem defaultHitParticle;
 
     /// <summary>
     /// Grabs the attached rigidbody and begins self destruct timer.
     /// </summary>
     private void Start()
     {
+        myTransform = GetComponent<Transform>();
         myRigidbody = GetComponent<Rigidbody>();
+        defaultHitParticle = GetComponentInChildren<ParticleSystem>();
+
         StartCoroutine("SelfDestructTimer");
     }
 
@@ -36,7 +41,7 @@ public class Bullet : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if (GameManager.BowBeforeMe.Paused)
+        if (GameManager.Me.Paused)
         {
             return;
         }
@@ -50,6 +55,16 @@ public class Bullet : MonoBehaviour
     /// <param name="collision"></param>
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Particle Please");
+        ParticleSystem overrideEffect = collision.gameObject.GetComponentInChildren<ParticleSystem>();
+        /*ParticleSystem hitEffect = overrideEffect != null ? overrideEffect : defaultHitParticle;
+        hitEffect.Emit(1);*/
+        ParticleSystem hitEffect = Instantiate(overrideEffect ? overrideEffect : defaultHitParticle, 
+            collision.GetContact(0).point, 
+            Quaternion.Inverse(myTransform.rotation)) as ParticleSystem;
+        hitEffect.Emit(1);
+        Destroy(hitEffect.gameObject, hitEffect.main.duration);
+
         Destroy(this.gameObject);
     }
 

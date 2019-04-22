@@ -21,6 +21,7 @@ public class ShooterController : MonoBehaviour
     [Header("Axis/Button Names")]
     [SerializeField] private string horizontalAxis = "Horizontal";
     [SerializeField] private string verticalAxis = "Vertical";
+    [SerializeField] private string fireButton = "Fire1";
 
     [Header("Partner Objects")]
     [SerializeField] private CanvasManager _associatedCanvas;
@@ -68,7 +69,7 @@ public class ShooterController : MonoBehaviour
         MakeMouseCursorObject();
     }
 
-    private void MakeMouseCursorObject()
+    protected virtual void MakeMouseCursorObject()
     {
         mouseObject = new GameObject("Mouse Pointer Object").GetComponent<Transform>();
     }
@@ -82,7 +83,17 @@ public class ShooterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.BowBeforeMe.Paused)
+        myTransform.eulerAngles = new Vector3(
+            0,
+            myTransform.rotation.eulerAngles.y,
+            0);
+
+        if (GameManager.Me.Paused)
+        {
+            return;
+        }
+
+        if (GameManager.Me.endCanvas.enabled)
         {
             return;
         }
@@ -92,7 +103,7 @@ public class ShooterController : MonoBehaviour
         RotateTowardsObject(mouseObject);
         RunSingleButtonAnimations();
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetButtonDown("Fire1"))
         {
             weaponManager.Fire();
         }
@@ -143,14 +154,15 @@ public class ShooterController : MonoBehaviour
     /// </summary>
     private void RunSingleButtonAnimations()
     {
-        if (Input.GetKey(KeyCode.E))
+        //Disabled for now
+        /*if (Input.GetKey(KeyCode.E))
         {
             characterAnimator.Play("Drop Kick Attack");
         }
         else if (Input.GetKey(KeyCode.Q))
         {
             characterAnimator.Play("Jump Down");
-        }
+        }*/
     }
 
     /// <summary>
@@ -158,7 +170,10 @@ public class ShooterController : MonoBehaviour
     /// </summary>
     protected virtual void OnDestroy()
     {
-        GameManager.BowBeforeMe.Player = null;
-        Destroy(mouseObject.gameObject);
+        GameManager.Me.Player = null;
+        if (mouseObject)
+        {
+            Destroy(mouseObject.gameObject);
+        }
     }
 }
